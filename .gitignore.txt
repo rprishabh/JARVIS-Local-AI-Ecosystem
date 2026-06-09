@@ -1,0 +1,20 @@
+# Ignore API Keys
+config/api_keys.py
+.env
+
+# Ignore Vector Databases (Too large and contain personal data)
+data/
+chroma_db/
+jarvis_brain/
+
+# Ignore Python Cache
+__pycache__/
+*.pyc
+
+# Ignore OpenClaw local settings
+.openclaw/
+exec-approvals.json
+
+# Ignore Logs
+logs/
+*.log

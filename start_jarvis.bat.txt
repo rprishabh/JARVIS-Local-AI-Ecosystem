@@ -1,0 +1,40 @@
+@echo off
+title JARVIS SUPERBRAIN STARTUP
+color 0A
+
+echo ===================================================
+echo           IGNITING JARVIS INFRASTRUCTURE
+echo ===================================================
+
+echo [1/6] Starting Ollama...
+start "JARVIS - Ollama" cmd /k "ollama serve"
+timeout /t 5 /nobreak > nul
+
+echo [2/6] Starting ChromaDB...
+start "JARVIS - ChromaDB" cmd /k "chroma run --host localhost --port 8000"
+timeout /t 4 /nobreak > nul
+
+echo [3/6] Starting LiteLLM...
+start "JARVIS - LiteLLM" cmd /k "litellm --config C:\jarvis\config\litellm_config.yaml --port 4000"
+timeout /t 4 /nobreak > nul
+
+echo ===================================================
+echo           LAUNCHING JARVIS COGNITIVE ENGINES
+echo ===================================================
+
+echo [4/6] Launching Core Brain (Bot A)...
+start "JARVIS - Bot A" cmd /k "python C:\jarvis\bot_a\bot_a.py"
+timeout /t 3 /nobreak > nul
+
+echo [5/6] Launching Trading Engine...
+start "JARVIS - Trading Bot" cmd /k "python C:\jarvis\trading\trading_bot.py"
+timeout /t 3 /nobreak > nul
+
+echo [6/6] Launching Command Center Dashboard...
+start "JARVIS - Dashboard" cmd /k "streamlit run C:\jarvis\dashboard\dashboard.py"
+
+echo ===================================================
+echo JARVIS IS FULLY ONLINE.
+echo Command Center: http://localhost:8501
+echo ===================================================
+pause
